@@ -1,3 +1,3 @@
 # LeetCode
 
-Only for you
+Only for you, this code only for you
