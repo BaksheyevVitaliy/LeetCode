@@ -62,7 +62,7 @@ public:
         }
         }
     }
-};
+};```
 
 ## Linked List Cycle II
 
@@ -93,7 +93,7 @@ public:
               }
               return zayac;
     }
-};
+};```
 
 ## Linked List Cycle
 
@@ -119,7 +119,7 @@ public:
         return 1;
         
     }
-};
+};```
 
 ## Merge Two Sorted Lists
 
@@ -167,7 +167,7 @@ public:
         return first;
         
     }
-};
+};```
 
 ## Remove Nth Node From End of List
 
@@ -205,7 +205,7 @@ public:
         return head;
         
     }
-};
+};```
 
 ## Middle of the Linked List
 
@@ -227,7 +227,7 @@ public:
         return cherepaha->next;
         
     }
-};
+};```
 
 ## Delete Node in a Linked List
 
@@ -245,7 +245,7 @@ public:
         
         
     }
-};
+};```
 
 ## Palindrome Linked List
 
@@ -291,7 +291,7 @@ public:
         }
             return 1;
     }
-};
+};```
 
 ## Reverse Linked List
 
@@ -320,7 +320,7 @@ public:
         }
         return q;
     }
-};
+};```
 
 ## Remove Linked List Elements
 
@@ -361,7 +361,7 @@ public:
         }
         return newhead;
     }
-};
+};```
 
 ## Intersection of Two Linked Lists
 
@@ -413,7 +413,7 @@ public:
         return qA;
         
     }
-};
+};```
 
 ## Sort List
 
@@ -525,4 +525,4 @@ public:
         return list_head;    
         
     }
-};
+};```
