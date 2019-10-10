@@ -446,7 +446,6 @@ public:
         return head;
         
     }
-}
 
 
     ListNode* sortList(ListNode* head) {
