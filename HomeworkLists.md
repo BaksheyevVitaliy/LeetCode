@@ -491,8 +491,8 @@ public:
                 buff = HeadOfSecondMergeLists;                          //have length = 1, haven't 2-nd half.
                 HeadOfSecondMergeLists = HeadOfSecondMergeLists->next;
                 buff->next = NULL;
-                list_start->next = NULL;
-                list_start->next = mergeTwoLists(HeadOfFirstMergeLists, HeadOfSecondMergeLists);               //merge it
+                ListStart->next = NULL;
+                ListStart->next = mergeTwoLists(HeadOfFirstMergeLists, HeadOfSecondMergeLists);               //merge it
                 }
                 while(ListStart->next != NULL)
                     ListStart = ListStart->next;
