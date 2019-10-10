@@ -21,44 +21,44 @@ https://leetcode.com/problems/reorder-list/
 class Solution {
 public:
     void reorderList(ListNode* head) {
-        ListNode* cherepaha = head;
-        ListNode* zayac = head;
+        ListNode* slow = head;
+        ListNode* fast = head;
         ListNode* first = NULL;
-        ListNode* p = NULL;
-        ListNode* q1 = NULL;
+        ListNode* passing = NULL;
+        ListNode* buff = NULL;
         
         
-        if(zayac != NULL){
-        while((zayac->next != NULL)&&(zayac->next->next != NULL)){
-            cherepaha = cherepaha->next;
-            zayac = zayac->next->next;            
+        if(fast != NULL){                                      //find middle
+        while((fast->next != NULL)&&(fast->next->next != NULL)){
+            slow = slow->next;
+            fast = fast->next->next;            
         }
-        q1 = cherepaha;
-        cherepaha = cherepaha->next;
-        q1->next = NULL;
-        if(cherepaha != NULL){
-        q1 = cherepaha->next;
-        first = cherepaha;
-        while(q1 != NULL){
-            p = q1->next;
-            q1->next = cherepaha;
-            first->next = p;
-            cherepaha = q1;
-            q1 = p;        
+        q1 = slow;                                          //reverse 2-nd half
+        slow = slow->next;
+        buff->next = NULL;
+        if(slow != NULL){
+        buff = slow->next;
+        first = slow;
+        while(buff != NULL){
+            passing = buff->next;
+            buff->next = slow;
+            first->next = passing;
+            slow = buff;
+            buff = passing;        
         }
-        zayac = head;
-        q1 = zayac->next;
-        p = cherepaha->next;
-        while(q1 != NULL){
-            zayac->next = cherepaha;
-            cherepaha->next = q1;
-            zayac = q1;
-            cherepaha = p;
-            q1 = q1->next;
+        fast = head;
+        buff = fast->next;
+        passing = slow->next;
+        while(q1 != NULL){                                //reorder list
+            fast->next = slow;
+            slow->next = buff;
+            fast = buff;
+            slow = passing;
+            buff = buff->next;
             if(p != NULL)
-                p = p->next;
+                passing = passing->next;
         }
-            zayac->next = cherepaha;
+            fast->next = slow;
         }
         }
     }
@@ -73,26 +73,26 @@ https://leetcode.com/problems/linked-list-cycle-ii/
 class Solution {
 public:
     ListNode *detectCycle(ListNode *head) {
-        ListNode* cherepaha = head;
-        ListNode* zayac = head;
+        ListNode* slow = head;
+        ListNode* fast = head;
         
         
-        if((zayac == NULL)||(zayac->next == NULL))
+        if((fast == NULL)||(fast->next == NULL))
             return NULL;
-        zayac = zayac->next;
-        while((zayac->next != NULL)&&(zayac->next->next != NULL)&&(cherepaha != zayac)){
-            cherepaha = cherepaha->next;
-            zayac = zayac->next->next;  
+        fast = fast->next;
+        while((fast->next != NULL)&&(fast->next->next != NULL)&&(slow != zayac)){                 //detect cicle
+            slow = slow->next;
+            fast = fast->next->next;  
         }
-              if((zayac->next == NULL)||(zayac->next->next == NULL))
+              if((fast->next == NULL)||(fast->next->next == NULL))                     
                 return NULL;
-              zayac = head;
-              cherepaha = cherepaha->next;
-              while(zayac != cherepaha){
-                  cherepaha = cherepaha->next;
-                  zayac = zayac->next;
+              fast = head;
+              slow = slow->next;
+              while(fast != slow){                                                               //find cicle
+                  slow = slow->next;
+                  fast = fast->next;
               }
-              return zayac;
+              return fast;
     }
 };
 ```
@@ -105,18 +105,18 @@ https://leetcode.com/problems/linked-list-cycle/
 class Solution {
 public:
     bool hasCycle(ListNode *head) {
-        ListNode* cherepaha = head;
-        ListNode* zayac = head;
+        ListNode* slow = head;
+        ListNode* fast = head;
         
         
-        if((zayac == NULL)||(zayac->next == NULL))
+        if((fast == NULL)||(fast->next == NULL))
             return 0;
-        zayac = zayac->next;
-        while((zayac->next != NULL)&&(zayac->next->next != NULL)&&(cherepaha != zayac)){
-            cherepaha = cherepaha->next;
-            zayac = zayac->next->next;  
+        fast = fast->next;
+        while((fast->next != NULL)&&(fast->next->next != NULL)&&(slow != zayac)){           //detect cicle
+            slow = slow->next;
+            fast = fast->next->next;  
         }
-              if((zayac->next == NULL)||(zayac->next->next == NULL))
+              if((fast->next == NULL)||(fast->next->next == NULL))
                 return 0;
         return 1;
         
@@ -132,42 +132,42 @@ https://leetcode.com/problems/merge-two-sorted-lists/
 class Solution {
 public:
     ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
-        ListNode* q1 = l1;
-        ListNode* p1 = l2;
-        ListNode* q = NULL;
-        ListNode* first;
-        if(q1 == NULL)
-            return p1;
-        if(p1 == NULL)
-            return q1;
-        if(q1->val <= p1->val){
-            first = q1;
-            q = q1;
-            q1 = q1->next;
+        ListNode* PassingList1 = l1;
+        ListNode* PassingList2 = l2;
+        ListNode* AlreadySort = NULL;
+        ListNode* head;
+        if(PassingList1 == NULL)
+            return PassingList2;
+        if(PassingList2 == NULL)
+            return PassingList1;
+        if(PassingList1->val <= PassingList2->val){
+            head = PassingList1;
+            AlreadySort = PassingList1;
+            PassingList1 = PassingList1->next;
         }
         else{
-            first = p1;
-            q = p1;
-            p1 = p1->next;
+            head = PassingList2;
+            AlreadySort = PassingList2;
+            PassingList2 = PassingList2->next;
         }
-        while((q1 != NULL)&&(p1 != NULL)){
-            if(q1->val < p1->val){
-                q->next = q1;
-                q = q1;
-                q1 = q1->next;
+        while((PassingList1 != NULL)&&(PassingList2 != NULL)){
+            if(PassingList1->val < PassingList2->val){
+                AlreadySort->next = PassingList1;
+                AlreadySort = PassingList1;
+                PassingList1 = PassingList1->next;
             }
             else{
-                q->next = p1;
-                q = p1;
-                p1 = p1->next;
+                AlreadySort->next = PassingList2;
+                AlreadySort = PassingList2;
+                PassingList2 = PassingList2->next;
             }
             
         }
-        if(q1 == NULL)
-            q->next = p1;
+        if(PassingList1 == NULL)
+            AlreadySort->next = PassingList2;
         else
-            q->next = q1;
-        return first;
+            AlreadySort->next = PassingList1;
+        return head;
         
     }
 };
@@ -181,31 +181,31 @@ https://leetcode.com/problems/remove-nth-node-from-end-of-list/
 class Solution {
 public:
     ListNode* removeNthFromEnd(ListNode* head, int n) {
-        ListNode* q = head;
-        ListNode* q1 = head;
-        ListNode* p = head;
+        ListNode* PassList = head;
+        ListNode* PassListAfterN = head;
+        ListNode* buff = head;
         
-        if(q == NULL){
+        if(PassList == NULL){
             return NULL;
         }
         if (n == 0)
             return head;
-        while((n > 0)&&(q1 != NULL)){
-            q1 = q1->next;
+        while((n > 0)&&(PassListAfterN != NULL)){
+            PassListAfterN = PassListAfterN->next;
             n--;
         }
-        if(q1 == NULL){
-            p = q-> next;
-            delete(q);
-            return p;
+        if(PassListAfterN == NULL){
+            buff = PassList-> next;
+            delete(PassList);
+            return buff;
         }
-        while(q1->next != NULL){
-            q1 = q1->next;
-            q = q->next;            
+        while(PassListAfterN->next != NULL){
+            PassListAfterN = PassListAfterN->next;
+            PassList = PassList->next;            
         }
-        p = q->next->next;
-        delete(q->next);
-        q->next = p;
+        buff = PassList->next->next;
+        delete(PassList->next);
+        PassList->next = buff;
         return head;
         
     }
@@ -220,16 +220,16 @@ https://leetcode.com/problems/middle-of-the-linked-list/
 class Solution {
 public:
     ListNode* middleNode(ListNode* head) {
-        ListNode* cherepaha = head;
-        ListNode* zayac = head;
+        ListNode* slow = head;
+        ListNode* fast = head;
         
-        while((zayac->next != NULL)&&(zayac->next->next != NULL)){
-            cherepaha = cherepaha->next;
-            zayac = zayac->next->next;            
+        while((fast->next != NULL)&&(fast->next->next != NULL)){
+            slow = slow->next;
+            fast = fast->next->next;            
         }
-        if(zayac->next == NULL)
-            return cherepaha;
-        return cherepaha->next;
+        if(fast->next == NULL)
+            return slow;
+        return slow->next;
         
     }
 };
@@ -243,11 +243,11 @@ https://leetcode.com/problems/delete-node-in-a-linked-list/
 class Solution {
 public:
     void deleteNode(ListNode* node) {
-        ListNode* q = NULL;
+        ListNode* DeletedList = NULL;
         node->val = node->next->val;
-        q = node->next;
+        DeletedList = node->next;
         node->next = node->next->next;
-        delete(q);
+        delete(DeletedList);
         
         
     }
@@ -262,39 +262,39 @@ https://leetcode.com/problems/palindrome-linked-list/
 class Solution {
 public:
     bool isPalindrome(ListNode* head) {
-        ListNode* cherepaha = head;
-        ListNode* zayac = head;
+        ListNode* slow = head;
+        ListNode* fast = head;
         ListNode* first = NULL;
-        ListNode* p = NULL;
-        ListNode* q1 = NULL;
+        ListNode* buff = NULL;
+        ListNode* PassHalf = NULL;
         
         
-        if(zayac == NULL)
+        if(fast == NULL)
             return 1;
-        while((zayac->next != NULL)&&(zayac->next->next != NULL)){
-            cherepaha = cherepaha->next;
-            zayac = zayac->next->next;            
+        while((fast->next != NULL)&&(fast->next->next != NULL)){
+            slow = slow->next;
+            fast = fast->next->next;            
         }
-        q1 = cherepaha;
-        cherepaha = cherepaha->next;
-        q1->next = NULL;
-        if(cherepaha == NULL)
+        PassHalf = slow;
+        slow = slow->next;
+        PassHalf->next = NULL;
+        if(slow == NULL)
             return 1;
-        q1 = cherepaha->next;
-        first = cherepaha;
-        while(q1 != NULL){
-            p = q1->next;
-            q1->next = cherepaha;
-            first->next = p;
-            cherepaha = q1;
-            q1 = p;        
+        PassHalf = slow->next;
+        first = slow;
+        while(PassHalf != NULL){
+            buff = PassHalf->next;
+            PassHalf->next = slow;
+            first->next = buff;
+            slow = PassHalf;
+            PassHalf = buff;        
         }
-        zayac = head;
-        while(cherepaha != NULL){
-            if(cherepaha->val != zayac->val)
+        fast = head;
+        while(slow != NULL){
+            if(slow->val != fast->val)
                 return 0;
-            cherepaha = cherepaha->next;
-            zayac= zayac->next;
+            slow = slow->next;
+            fast= fast->next;
         }
             return 1;
     }
@@ -309,24 +309,22 @@ https://leetcode.com/problems/reverse-linked-list/
 class Solution {
 public:
     ListNode* reverseList(ListNode* head) {
-        ListNode* q = head;
-        ListNode* first = head;
-        ListNode* p = NULL;
-        ListNode* q1 = NULL;
+        ListNode* HeadOfNewList = head;
+        ListNode* TailOfNewList = head;
+        ListNode* FirstOfOldList = NULL;
         
-        if(q == NULL)
+        if(HeadOfNewList == NULL)
             return NULL;
-        if(q->next == NULL)
+        if(HeadOfNewList->next == NULL)
             return head;
-        q1 = q->next;
-        while(q1 != NULL){
-            p = q1->next;
-            q1->next = q;
-            first->next = p;
-            q = q1;
-            q1 = p;        
+        FirstOfOldList = HeadOfNewList->next;
+        while(FirstOfOldList != NULL){
+            TailOfNewList->next = TailOfNewList->next->next;
+            FirstOfOldList->next = HeadOfNewList;
+            HeadOfNewList = FirstOfOldList;
+            FirstOfOldList = TailOfNewList->next;        
         }
-        return q;
+        return HeadOfNewList;
     }
 };
 ```
@@ -339,33 +337,32 @@ https://leetcode.com/problems/remove-linked-list-elements/
 class Solution {
 public:
     ListNode* removeElements(ListNode* head, int val) {
-        ListNode* q = head;
-        ListNode* newhead = NULL;
-        ListNode* q1 = NULL;
-        ListNode* p = NULL;
-        if(q == NULL)
+        ListNode* PassFirst = head;
+        ListNode* newhead = head;
+        ListNode* PassNext = NULL;
+        ListNode* DeleteBuff = NULL;
+        if(newhead == NULL)
             return NULL;
-        while(q->val == val){
-            if(q->next != NULL){
-                q1 = q->next;
-                delete(q);
-                q = q1;
+        while(newhead->val == val){
+            if(newhead->next != NULL){
+                PassNext = newhead->next;
+                delete(newhead);
+                newhead = PassNext;
             }
             else
                 return NULL;
         }
-        q1 = q->next;
-        newhead = q;
-        while(q1 != NULL){
-            if(q1->val == val){
-                p = q1->next;
-                delete(q1);
-                q->next = p;
-                q1 = p;
+        PassNext = PassFirst->next;
+        while(PassNext != NULL){
+            if(PassNext->val == val){
+                DeleteBuff = PassNext->next;
+                delete(PassNext);
+                PassFirst->next = DeleteBuff;
+                PassNext = DeleteBuff;
             }
             else{
-                q = q1;
-                q1 = q1->next;
+                PassFirst = PassNext;
+                PassNext = PassNext->next;
             }
         }
         return newhead;
@@ -381,46 +378,23 @@ https://leetcode.com/problems/intersection-of-two-linked-lists/
 class Solution {
 public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
-        ListNode* qA = headA;
-        ListNode* qB = headB;
-        ListNode* q = NULL;
-        int sizeA = 0;
-        int sizeB = 0;
-        int size = 0;
-        if((qA == NULL)||(qB == NULL))
+        ListNode* PassA = headA;
+        ListNode* PassB = headB;
+        if((PassA == NULL)||(PassB == NULL))
             return NULL;
-        while(qA != NULL){
-            sizeA++;
-            qA = qA->next;
+        while(PassA != PassB){
+            if((PassA == NULL)||(PassB == NULL)){
+                if(PassA == NULL)
+                    PassA = headB;
+                if(PassB == NULL)
+                    PassB = headA;
+            }
+            else{
+                PassA = PassA->next;
+                PassB = PassB->next;
         }
-        while(qB != NULL){
-            sizeB++;
-            qB = qB->next;
         }
-        size = sizeA - sizeB;
-        qA = headA;
-        qB = headB;
-        if(size < 0){
-            q = qB;
-            size -=  2*size;
-        }
-        else
-            q = qA;
-        while(size > 0){
-            q = q->next;
-            size--;
-        } 
-        if(sizeA - sizeB < 0)
-            qB = q;
-        else
-            qA = q;
-        while((qA != qB)&&(qA != NULL)&&(qB != NULL)){
-            qA = qA->next;
-            qB = qB->next;
-        }
-        if((qA == NULL)||(qB == NULL))
-            return NULL;
-        return qA;
+        return PassA;
         
     }
 };
@@ -433,107 +407,106 @@ https://leetcode.com/problems/sort-list/
 ```C++
 class Solution {
 public:
-     ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
-        ListNode* q1 = l1;
-        ListNode* p1 = l2;
-        ListNode* q = NULL;
-        ListNode* first;
-        if(q1 == NULL)
-            return p1;
-        if(p1 == NULL)
-            return q1; 
-        if(q1->val <= p1->val){
-            first = q1;
-            q = q1;
-            q1 = q1->next;
+    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+        ListNode* PassingList1 = l1;
+        ListNode* PassingList2 = l2;
+        ListNode* AlreadySort = NULL;
+        ListNode* head;
+        if(PassingList1 == NULL)
+            return PassingList2;
+        if(PassingList2 == NULL)
+            return PassingList1;
+        if(PassingList1->val <= PassingList2->val){
+            head = PassingList1;
+            AlreadySort = PassingList1;
+            PassingList1 = PassingList1->next;
         }
         else{
-            first = p1;
-            q = p1;
-            p1 = p1->next;
+            head = PassingList2;
+            AlreadySort = PassingList2;
+            PassingList2 = PassingList2->next;
         }
-        while((q1 != NULL)&&(p1 != NULL)){
-            if(q1->val < p1->val){
-                q->next = q1;
-                q = q1;
-                q1 = q1->next;
+        while((PassingList1 != NULL)&&(PassingList2 != NULL)){
+            if(PassingList1->val < PassingList2->val){
+                AlreadySort->next = PassingList1;
+                AlreadySort = PassingList1;
+                PassingList1 = PassingList1->next;
             }
             else{
-                q->next = p1;
-                q = p1;
-                p1 = p1->next;
+                AlreadySort->next = PassingList2;
+                AlreadySort = PassingList2;
+                PassingList2 = PassingList2->next;
             }
             
         }
-        if(q1 == NULL)
-            q->next = p1;
+        if(PassingList1 == NULL)
+            AlreadySort->next = PassingList2;
         else
-            q->next = q1;
-        return first;
+            AlreadySort->next = PassingList1;
+        return head;
         
     }
+}
 
 
     ListNode* sortList(ListNode* head) {
-        ListNode* q = NULL;
-        ListNode* p = NULL;
-        ListNode* p1 = NULL;
-        ListNode* list_false = new ListNode(0);
-        ListNode* list_head = head;
-        ListNode* list_start = head;
-        ListNode* list_end = head;
-        ListNode* list1 = head;
-        ListNode* end = head;
+        ListNode* HeadOfFirstMergeLists = NULL;
+        ListNode* HeadOfSecondMergeLists = NULL;
+        ListNode* buff = NULL;
+        ListNode* ListFalse = new ListNode(0);                     //list before head
+        ListNode* ListHead = head;
+        ListNode* ListStart = head;                               //list before merge lists
+        ListNode* ListEnd = head;                                 //list after merge lists
         int n = 1, length = 0, i = 0, j = 0, kostil = 0;
-        while(list_head != NULL){
-            list_head = list_head->next;
+        while(ListHead != NULL){
+            ListHead = ListHead->next;
             length++;
         }
-        list_head = head;
-        list_false->next = list_head;
-        while(n < length){
-            q = list_head;
-            list_start = list_false;
-            list_end = q;
-            p = list_false;     
+        ListHead = head;
+        ListFalse->next = ListHead;
+        while(n < length){                                       
+            HeadOfFirstMergeLists = ListHead;
+            ListStart = ListFalse;
+            ListEnd = ListHead;
+            HeadOfSecondMergeLists = ListFalse;     
             for(j = 0; j < length; j += 2 * n){
-                for(i = 0; i < n * 2; i++){
-                    if(list_end != NULL){
-                        list_end = list_end->next;
-                        p = p->next;
+                for(i = 0; i < n * 2; i++){                             // split into pieces of length 2 * n
+                    if(ListEnd != NULL){
+                        ListEnd = ListEnd->next;
+                        HeadOfSecondMergeLists = HeadOfSecondMergeLists->next;
                     }
                     else
                         i = 2 * n;
                 }
-                p->next = NULL;
-                p = q;
+                HeadOfSecondMergeLists->next = NULL;
+                HeadOfSecondMergeLists = HeadOfFirstMergeLists;
                 kostil = 1;
-                for(i = 0; i < n - 1; i++){
-                    if(p->next != NULL)
-                        p = p->next;
+                for(i = 0; i < n - 1; i++){                           //merge into 2 pieces of length n
+                    if(HeadOfSecondMergeLists->next != NULL)
+                        HeadOfSecondMergeLists = HeadOfSecondMergeLists->next;
                     else
                         kostil = 0;
                 }
-                if (kostil){
-                p1 = p;
-                p = p->next;
-                p1->next = NULL;
+                if (kostil){                                          //kostil: if we have list with length = 17, n = 8. The 2-nd piece
+                buff = HeadOfSecondMergeLists;                          //have length = 1, haven't 2-nd half.
+                HeadOfSecondMergeLists = HeadOfSecondMergeLists->next;
+                buff->next = NULL;
                 list_start->next = NULL;
-                list_start->next = mergeTwoLists(q, p);
+                list_start->next = mergeTwoLists(HeadOfFirstMergeLists, HeadOfSecondMergeLists);               //merge it
                 }
-                while(list_start->next != NULL)
-                    list_start = list_start->next;
-                list_start->next = list_end;
-                q = list_end;
-                p = list_start;
+                while(ListStart->next != NULL)
+                    ListStart = ListStart->next;
+                ListStart->next = ListEnd;
+                HeadOfFirstMergeLists = ListEnd;
+                HeadOfSecondMergeLists = ListStart;
                 
                     
             }
             n *= 2;
-            list_head = list_false->next;
+            ListHead = ListFalse->next;
         }
-        delete(list_false);
-        return list_head;    
+        delete(ListFalse);
+        return ListHead;    
         
     }
 };
