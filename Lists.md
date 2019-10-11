@@ -55,7 +55,7 @@ public:
             fast = buff;
             slow = passing;
             buff = buff->next;
-            if(p != NULL)
+            if(passing != NULL)
                 passing = passing->next;
         }
             fast->next = slow;
