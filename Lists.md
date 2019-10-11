@@ -33,7 +33,7 @@ public:
             slow = slow->next;
             fast = fast->next->next;            
         }
-        q1 = slow;                                          //reverse 2-nd half
+        buff = slow;                                          //reverse 2-nd half
         slow = slow->next;
         buff->next = NULL;
         if(slow != NULL){
@@ -49,7 +49,7 @@ public:
         fast = head;
         buff = fast->next;
         passing = slow->next;
-        while(q1 != NULL){                                //reorder list
+        while(buff != NULL){                                //reorder list
             fast->next = slow;
             slow->next = buff;
             fast = buff;
@@ -80,7 +80,7 @@ public:
         if((fast == NULL)||(fast->next == NULL))
             return NULL;
         fast = fast->next;
-        while((fast->next != NULL)&&(fast->next->next != NULL)&&(slow != zayac)){                 //detect cicle
+        while((fast->next != NULL)&&(fast->next->next != NULL)&&(slow != fast)){                 //detect cicle
             slow = slow->next;
             fast = fast->next->next;  
         }
@@ -112,7 +112,7 @@ public:
         if((fast == NULL)||(fast->next == NULL))
             return 0;
         fast = fast->next;
-        while((fast->next != NULL)&&(fast->next->next != NULL)&&(slow != zayac)){           //detect cicle
+        while((fast->next != NULL)&&(fast->next->next != NULL)&&(slow != fast)){           //detect cicle
             slow = slow->next;
             fast = fast->next->next;  
         }
