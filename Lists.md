@@ -457,7 +457,8 @@ public:
         ListNode* ListHead = head;
         ListNode* ListStart = head;                               //list before merge lists
         ListNode* ListEnd = head;                                 //list after merge lists
-        int n = 1, length = 0, i = 0, j = 0, kostil = 0;
+        int n = 1, length = 0, i = 0, j = 0;
+        bool flag = true;
         while(ListHead != NULL){
             ListHead = ListHead->next;
             length++;
@@ -480,14 +481,14 @@ public:
                 }
                 HeadOfSecondMergeLists->next = NULL;
                 HeadOfSecondMergeLists = HeadOfFirstMergeLists;
-                kostil = 1;
+                flag = true;
                 for(i = 0; i < n - 1; i++){                           //merge into 2 pieces of length n
                     if(HeadOfSecondMergeLists->next != NULL)
                         HeadOfSecondMergeLists = HeadOfSecondMergeLists->next;
                     else
-                        kostil = 0;
+                        flag = false;
                 }
-                if (kostil){                                          //kostil: if we have list with length = 17, n = 8. The 2-nd piece
+                if (flag){                                          //flag: if we have list with length = 17, n = 8. The 2-nd piece
                 buff = HeadOfSecondMergeLists;                          //have length = 1, haven't 2-nd half.
                 HeadOfSecondMergeLists = HeadOfSecondMergeLists->next;
                 buff->next = NULL;
