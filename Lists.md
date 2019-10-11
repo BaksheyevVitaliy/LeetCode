@@ -110,15 +110,15 @@ public:
         
         
         if((fast == NULL)||(fast->next == NULL))
-            return 0;
+            return false;
         fast = fast->next;
         while((fast->next != NULL)&&(fast->next->next != NULL)&&(slow != fast)){           //detect cicle
             slow = slow->next;
             fast = fast->next->next;  
         }
               if((fast->next == NULL)||(fast->next->next == NULL))
-                return 0;
-        return 1;
+                return false;
+        return true;
         
     }
 };
@@ -270,7 +270,7 @@ public:
         
         
         if(fast == NULL)
-            return 1;
+            return true;
         while((fast->next != NULL)&&(fast->next->next != NULL)){
             slow = slow->next;
             fast = fast->next->next;            
@@ -279,7 +279,7 @@ public:
         slow = slow->next;
         PassHalf->next = NULL;
         if(slow == NULL)
-            return 1;
+            return true;
         PassHalf = slow->next;
         first = slow;
         while(PassHalf != NULL){
@@ -292,11 +292,11 @@ public:
         fast = head;
         while(slow != NULL){
             if(slow->val != fast->val)
-                return 0;
+                return false;
             slow = slow->next;
             fast= fast->next;
         }
-            return 1;
+            return true;
     }
 };
 ```
@@ -338,20 +338,21 @@ class Solution {
 public:
     ListNode* removeElements(ListNode* head, int val) {
         ListNode* PassFirst = head;
-        ListNode* newhead = head;
+        ListNode* NewHead = head;
         ListNode* PassNext = NULL;
         ListNode* DeleteBuff = NULL;
-        if(newhead == NULL)
+        if(NewHead == NULL)
             return NULL;
-        while(newhead->val == val){
-            if(newhead->next != NULL){
-                PassNext = newhead->next;
-                delete(newhead);
-                newhead = PassNext;
+        while(NewHead->val == val){
+            if(NewHead->next != NULL){
+                PassNext = NewHead->next;
+                delete(NewHead);
+                NewHead = PassNext;
             }
             else
                 return NULL;
         }
+        PassFirst = NewHead;
         PassNext = PassFirst->next;
         while(PassNext != NULL){
             if(PassNext->val == val){
@@ -365,7 +366,7 @@ public:
                 PassNext = PassNext->next;
             }
         }
-        return newhead;
+        return NewHead;
     }
 };
 ```
