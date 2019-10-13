@@ -1,4 +1,4 @@
-#topological Sort
+# Topological Sort
 
 + [Course Schedule](#course-schedule)
 + [Course Schedule II](#course-schedule-ii)
