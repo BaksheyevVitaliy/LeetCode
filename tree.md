@@ -193,7 +193,7 @@ https://leetcode.com/problems/subtree-of-another-tree/
 bool Answer(TreeNode* root1, TreeNode* root2){
     if ((root1 == NULL)&&(root2 == NULL))
         return true;
-    if ((rLeft == NULL)||(rRight == NULL))
+    if ((root1 == NULL)||(root2 == NULL))
         return false;
     return (root2->val == root1->val)&&(Answer(root1->left, root2->left))&&(Answer(root1->right, root2->right));
 
