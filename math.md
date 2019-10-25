@@ -38,13 +38,14 @@ public:
         return arr[N];
     }
     int fib(int N) {
+        int result = 0;
         int i = 0;
         int *arr = new int[N + 1];
         for(i = 2; i < N; i++){
             arr[i] = -1;
         }
-        i = fast(N, arr);
-        return i;
+        result = fast(N, arr);
+        return result;
     }
 };
 ```
