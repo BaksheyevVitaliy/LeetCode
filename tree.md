@@ -60,15 +60,11 @@ https://leetcode.com/problems/symmetric-tree/
 bool Answer(TreeNode* rLeft, TreeNode* rRight){
     if ((rLeft == NULL)&&(rRight == NULL))
         return true;
-    if ((rLeft == NULL)&&(rRight != NULL))
+    if ((rLeft == NULL)||(rRight == NULL))
         return false;
-    if ((rLeft != NULL)&&(rRight == NULL))
-        return false;
-    if((rRight->val == rLeft->val)&&(Answer(rLeft->left, rRight->right))&&(Answer(rLeft->right, rRight->left)))
-        return true;
-    return false;
-
+    return (rRight->val == rLeft->val)&&(Answer(rLeft->left, rRight->right))&&(Answer(rLeft->right, rRight->left));
 }
+
 class Solution {
 public:
     bool isSymmetric(TreeNode* root) {
@@ -85,22 +81,14 @@ https://leetcode.com/problems/maximum-depth-of-binary-tree/
 
 ```C++
 int Answer(TreeNode* root){
-    int depth1 = 0, depth2 = 0;
     if(root != NULL){
-        depth1 = Answer(root->left);
-        depth2 = Answer(root->right);
-        if(depth1 > depth2)
-            return depth1 + 1;
-        else
-            return depth2 + 1;
+        return max(Answer(root->left), Answer(root->right)) + 1;
     }
     return 0;
 }
 class Solution {
 public:
     int maxDepth(TreeNode* root) {
-        if(root == NULL)
-            return 0;
         return Answer(root);
         
     }
@@ -115,13 +103,9 @@ https://leetcode.com/problems/same-tree/
 bool Answer(TreeNode* root1, TreeNode* root2){
     if ((root1 == NULL)&&(root2 == NULL))
         return true;
-    if ((root1 == NULL)&&(root2 != NULL))
+    if ((rLeft == NULL)||(rRight == NULL))
         return false;
-    if ((root1 != NULL)&&(root2 == NULL))
-        return false;
-    if((root2->val == root1->val)&&(Answer(root1->left, root2->left))&&(Answer(root1->right, root2->right)))
-        return true;
-    return false;
+    return (root2->val == root1->val)&&(Answer(root1->left, root2->left))&&(Answer(root1->right, root2->right));
 
 }
 class Solution {
@@ -163,16 +147,9 @@ https://leetcode.com/problems/path-sum/
 bool Answer(TreeNode* root, int sum){
     if(root == NULL)
         return false;
-    if((root->left != NULL) ||(root->right != NULL)){
-        if((Answer(root->left, sum - root->val))||(Answer(root->right, sum - root->val)))
-            return true;
-        else
-            return false;
-    }
-    if(sum == root->val)
-        return true;
-    else
-        return false;
+    if((root->left != NULL) ||(root->right != NULL))
+        return (Answer(root->left, sum - root->val))||(Answer(root->right, sum - root->val));
+    return sum == root->val;
 }
 class Solution {
 public:
@@ -216,13 +193,9 @@ https://leetcode.com/problems/subtree-of-another-tree/
 bool Answer(TreeNode* root1, TreeNode* root2){
     if ((root1 == NULL)&&(root2 == NULL))
         return true;
-    if ((root1 == NULL)&&(root2 != NULL))
+    if ((rLeft == NULL)||(rRight == NULL))
         return false;
-    if ((root1 != NULL)&&(root2 == NULL))
-        return false;
-    if((root2->val == root1->val)&&(Answer(root1->left, root2->left))&&(Answer(root1->right, root2->right)))
-        return true;
-    return false;
+    return (root2->val == root1->val)&&(Answer(root1->left, root2->left))&&(Answer(root1->right, root2->right));
 
 }
 bool SubAnswer(TreeNode* root1, TreeNode* root2){
