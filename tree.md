@@ -300,23 +300,25 @@ public:
 https://leetcode.com/problems/validate-binary-search-tree/
 
 ```C++
-bool Answer(TreeNode* root, int down, int up){
-    bool bool1 = false, bool2 = false;
+void Answer(TreeNode* root, vector<int>& answer){
     if(root != NULL){
-        bool1 = Answer(root->left, down, root->val);
-        bool2 = Answer(root->right, root->val, up);
-        if((down != NULL)&&(down >= root->val))
-            return false;
-        if((up != NULL)&&(up <= root->val))
-            return false;
-        return bool1&&bool2;
+        Answer(root->left, answer);
+        answer.push_back(root->val);
+        Answer(root->right, answer);
     }
-    return true;
 }
 class Solution {
 public:
     bool isValidBST(TreeNode* root) {
-        return Answer(root, NULL, NULL);
+        vector<int> answer;
+        int i = 0;
+        Answer(root, answer);
+        if (root == NULL)
+            return true;
+        for(i = 0; i < answer.size()-1;i++)
+            if(answer[i] >= answer[i+1])
+                return false;
+        return true;
     }
 };
 ```
