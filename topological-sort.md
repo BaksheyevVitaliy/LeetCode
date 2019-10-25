@@ -121,7 +121,7 @@ https://leetcode.com/problems/verifying-an-alien-dictionary/
 ## Verifying an Alien Dictionary
 
 ```C++
-bool Compaire(string word1, string word2, string order){
+bool Compare(string word1, string word2, string order){
     int passOrder = 0, pass1 = 0, pass2 = 0;
     while((pass1 < word1.length())&&(pass2 < word2.length())){
         if(word1[pass1] == word2[pass2]){
@@ -146,7 +146,7 @@ public:
     bool isAlienSorted(vector<string>& words, string order) {
         int i;
         for(i = 0; i < words.size()-1; i++)
-            if(!(Compaire(words[i], words[i + 1], order)))
+            if(!(Compare(words[i], words[i + 1], order)))
                 return false;
         return true;
     }
