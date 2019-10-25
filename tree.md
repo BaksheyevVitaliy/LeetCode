@@ -399,7 +399,7 @@ TreeNode* Answer(TreeNode* node){
         else{
           TreeNode* buf = node;
           result = node->parent;
-          while((buf = result->right)&&(result != NULL)){
+          while((buf == result->right)&&(result != NULL)){
             buf = buf->parent;
             result = result->parent;
           }
