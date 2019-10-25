@@ -12,18 +12,18 @@ https://leetcode.com/problems/two-sum/
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
-        vector <int> result(0);
-        map <int, int> NewNums;
-        for (int i = 0; i < nums.size(); i++)
-                NewNums[nums[i]] = i;
-        for (int i = 0; i < NewNums.size(); i++){
-            if((NewNums.find(target - nums[i]) != NewNums.end())&&(NewNums[target - nums[i]] != i)){
-                result.push_back(i);
-                result.push_back(NewNums[target - nums[i]]);
-                break;
+        vector<int> answer;
+        int i, j;
+        for (i = 0; i < nums.size(); ++i){
+            for(j = nums.size(); j > i; j--){
+                if (nums[i] + nums[j] == target){
+                    answer.push_back(i);
+                    answer.push_back(j);
+                    return answer;
+                }
             }
         }
-        return result;
+        return answer;
     }
 };
 ```
