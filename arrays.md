@@ -36,44 +36,44 @@ https://leetcode.com/problems/3sum/
 class Solution {
 public:
     vector<vector<int>> threeSum(vector<int>& nums) {
-        vector<vector<int>> Answer;
-        int i = 0, left = 0, right = 0, buffi = 0, buffleft = 0, buffright = 0;
+        vector<vector<int>> answer;
+        int i = 0, left = 0, right = 0, buffI = 0, buffLeft = 0, buffRight = 0;
         if (nums.empty())
-            return Answer;
-        buffi = nums[0] + 1;
+            return answer;
+        buffI = nums[0] + 1;
         std::sort (nums.begin(), nums.end());  
         while(i < nums.size()){
             left = i + 1;
             right = nums.size() - 1;
             while(left < right){
-                buffleft = 0;
-                buffright = 0;
+                buffLeft = 0;
+                buffRight = 0;
                 if(nums[i] + nums[left] + nums[right] == 0){
-                    Answer.push_back(vector<int>{nums[i], nums[left], nums[right]});
-                    buffleft = 1;
-                    buffright = 1;                    
+                    answer.push_back(vector<int>{nums[i], nums[left], nums[right]});
+                    buffLeft = 1;
+                    buffRight = 1;                    
                 }
                 if(nums[i] + nums[left] + nums[right] > 0)
-                    buffright = 1;             
+                    buffRight = 1;             
                 if(nums[i] + nums[left] + nums[right] < 0)
-                    buffleft = 1;             
-                if(buffleft){
-                    buffleft = nums[left];
-                    while((left < nums.size())&&(buffleft == nums[left]))
+                    buffLeft = 1;             
+                if(buffLeft){
+                    buffLeft = nums[left];
+                    while((left < nums.size())&&(buffLeft == nums[left]))
                         left++;
                 }
-                if(buffright){
-                    buffright = nums[right];
-                    while((right >= 0)&&(buffright == nums[right]))
+                if(buffRight){
+                    buffRight = nums[right];
+                    while((right >= 0)&&(buffRight == nums[right]))
                         right--;
                 }
             } 
-            buffi = nums[i];
-            while((i < nums.size())&&(buffi == nums[i]))
+            buffI = nums[i];
+            while((i < nums.size())&&(buffI == nums[i]))
                         i++;
             
         }
-        return Answer;
+        return answer;
         
     }
 };
