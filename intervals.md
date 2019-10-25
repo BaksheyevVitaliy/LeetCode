@@ -42,11 +42,11 @@ https://leetcode.com/problems/merge-intervals/
 class Solution {
 public:
     vector<vector<int>> merge(vector<vector<int>>& intervals) {
-        vector<vector<int>> Answer;
+        vector<vector<int>> answer;
         vector<int> start, finish;
-        int i = 0, j = -1, LeftPoint = 0, RightPoint = 0, SumOfStartsPointsMinusEndPoints = 0;
+        int i = 0, j = -1, leftPoint = 0, rightPoint = 0, sumOfStartsPointsMinusEndPoints = 0;
         if (intervals.empty())
-            return Answer;
+            return answer;
         while(++j < intervals.size()){
             start.push_back(intervals[j][0]);
             finish.push_back(intervals[j][1]);            
@@ -55,22 +55,22 @@ public:
         sort(finish.begin(), finish.end());
         j = 0;
         while(j < intervals.size()){
-            LeftPoint = i++;
-            SumOfStartsPointsMinusEndPoints = 1;
-            while(SumOfStartsPointsMinusEndPoints){
+            leftPoint = i++;
+            sumOfStartsPointsMinusEndPoints = 1;
+            while(sumOfStartsPointsMinusEndPoints){
                 if((i != intervals.size())&&(start[i]<= finish[j])){
-                    SumOfStartsPointsMinusEndPoints++;
+                    sumOfStartsPointsMinusEndPoints++;
                     i++;
                 }
                 else{
-                    SumOfStartsPointsMinusEndPoints--;
+                    sumOfStartsPointsMinusEndPoints--;
                     j++;
                 }
             }
-            RightPoint = j - 1;
-            Answer.push_back(vector<int>{start[LeftPoint], finish[RightPoint]});
+            rightPoint = j - 1;
+            answer.push_back(vector<int>{start[leftPoint], finish[rightPoint]});
         }
-        return Answer;        
+        return answer;        
     }    
 };
 ```
@@ -83,12 +83,12 @@ https://leetcode.com/problems/insert-interval/
 class Solution {
 public:
     vector<vector<int>> insert(vector<vector<int>>& intervals, vector<int>& newInterval) {
-        vector<vector<int>> Answer;
+        vector<vector<int>> answer;
         vector<int> start, finish;
-        int i = 0, j = -1, LeftPoint = 0, RightPoint = 0, SumOfStartsPointsMinusEndPoints = 0;
+        int i = 0, j = -1, leftPoint = 0, rightPoint = 0, sumOfStartsPointsMinusEndPoints = 0;
         if (intervals.empty()){
-             Answer.push_back(newInterval);
-            return Answer;
+             answer.push_back(newInterval);
+            return answer;
         }
         while(++j < intervals.size()){
             start.push_back(intervals[j][0]);
@@ -100,22 +100,22 @@ public:
         sort(finish.begin(), finish.end());
         j = 0;
         while(j < finish.size()){
-            LeftPoint = i++;
-            SumOfStartsPointsMinusEndPoints = 1;
-            while(SumOfStartsPointsMinusEndPoints){
+            leftPoint = i++;
+            sumOfStartsPointsMinusEndPoints = 1;
+            while(sumOfStartsPointsMinusEndPoints){
                 if((i != start.size())&&(start[i]<= finish[j])){
-                    SumOfStartsPointsMinusEndPoints++;
+                    sumOfStartsPointsMinusEndPoints++;
                     i++;
                 }
                 else{
-                    SumOfStartsPointsMinusEndPoints--;
+                    sumOfStartsPointsMinusEndPoints--;
                     j++;
                 }
             }
-            RightPoint = j - 1;
-            Answer.push_back(vector<int>{start[LeftPoint], finish[RightPoint]});
+            rightPoint = j - 1;
+            answer.push_back(vector<int>{start[leftPoint], finish[rightPoint]});
         }
-        return Answer;        
+        return answer;        
     }    
 };
 ```
