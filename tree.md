@@ -1,17 +1,21 @@
 # LeetCode_TREE
 
-+ [Binary Tree Inorder Traversal](#problems/binary-tree-inorder-traversal)
-+ [Linked List Cycle II](#linked-list-cycle-ii)
-+ [Linked List Cycle](#linked-list-cycle)
-+ [Merge Two Sorted Lists](#merge-two-sorted-lists)
-+ [Remove Nth Node From End of List](#remove-nth-node-from-end-of-list)
-+ [Middle of the Linked List](#middle-of-the-linked-list)
-+ [Delete Node in a Linked List](#delete-node-in-a-linked-list)
-+ [Palindrome Linked List](#palindrome-linked-list)
-+ [Reverse Linked List](#reverse-linked-list)
-+ [Remove Linked List Elements](#remove-linked-list-elements)
-+ [Intersection of Two Linked Lists](#intersection-of-two-linked-lists)
-+ [Sort List](#sort-list)
++ [Binary Tree Inorder Traversal](#binary-tree-inorder-traversal)
++ [Symmetric Tree](#symmetric-tree)
++ [Maximum Depth of Binary Tree](#maximum-depth-of-binary-tree)
++ [Same Tree](#same-tree)
++ [Invert Binary Tree](#invert-binary-tree)
++ [Path Sum](#path-sum)
++ [Binary Tree Level Order Traversal](#binary-tree-level-order-traversal)
++ [Subtree of Another Tree](#subtree-of-another-tree)
++ [Kth Smallest Element in a BST](#kth-smallest-element-in-a-bst)
++ [Lowest Common Ancestor of a Binary Tree](#lowest-common-ancestor-of-a-binary-tree)
++ [Lowest Common Ancestor of a Binary Search Tree](#lowest-common-ancestor-of-a-binary-search-tree)
++ [Validate Binary Search Tree](#validate-binary-search-tree)
++ [Binary Search Tree Iterator](#binary-search-tree-iterator)
++ [12](#12)
+
+
 
 ## Definition for a binary tree node
 
@@ -221,18 +225,18 @@ bool Answer(TreeNode* root1, TreeNode* root2){
     return false;
 
 }
-bool PredAnswer(TreeNode* root1, TreeNode* root2){
+bool SubAnswer(TreeNode* root1, TreeNode* root2){
     if(root1 != NULL){
         if (Answer(root1, root2))
             return true;
-        return PredAnswer(root1->left, root2)||PredAnswer(root1->right, root2);
+        return SubAnswer(root1->left, root2)||SubAnswer(root1->right, root2);
     }
     return false;
 }
 class Solution {
 public:
     bool isSubtree(TreeNode* s, TreeNode* t) {
-        return PredAnswer(s, t);
+        return SubAnswer(s, t);
     }
 };
 ```
