@@ -91,7 +91,7 @@ public:
         for(i = 0; i < nums.size(); i++){
             sum = 0;
             for(j = i; j < nums.size(); j++){
-                sum = sum + nums[j];
+                sum += nums[j];
                 if (k == sum)
                     quantity++;
             }
