@@ -44,7 +44,7 @@ public:
     vector<vector<int>> merge(vector<vector<int>>& intervals) {
         vector<vector<int>> answer;
         vector<int> start, finish;
-        int i = 0, j = -1, leftPoint = 0, rightPoint = 0, sumOfStartsPointsMinusEndPoints = 0;
+        int i = 0, j = -1, leftPoint = 0, rightPoint = 0, BeginsEndsDiff = 0;
         if (intervals.empty())
             return answer;
         while(++j < intervals.size()){
@@ -56,14 +56,14 @@ public:
         j = 0;
         while(j < intervals.size()){
             leftPoint = i++;
-            sumOfStartsPointsMinusEndPoints = 1;
-            while(sumOfStartsPointsMinusEndPoints){
+            BeginsEndsDiff = 1;
+            while(BeginsEndsDiff){
                 if((i != intervals.size())&&(start[i]<= finish[j])){
-                    sumOfStartsPointsMinusEndPoints++;
+                    BeginsEndsDiff++;
                     i++;
                 }
                 else{
-                    sumOfStartsPointsMinusEndPoints--;
+                    BeginsEndsDiff--;
                     j++;
                 }
             }
@@ -85,7 +85,7 @@ public:
     vector<vector<int>> insert(vector<vector<int>>& intervals, vector<int>& newInterval) {
         vector<vector<int>> answer;
         vector<int> start, finish;
-        int i = 0, j = -1, leftPoint = 0, rightPoint = 0, sumOfStartsPointsMinusEndPoints = 0;
+        int i = 0, j = -1, leftPoint = 0, rightPoint = 0, BeginsEndsDiff = 0;
         if (intervals.empty()){
              answer.push_back(newInterval);
             return answer;
@@ -101,14 +101,14 @@ public:
         j = 0;
         while(j < finish.size()){
             leftPoint = i++;
-            sumOfStartsPointsMinusEndPoints = 1;
-            while(sumOfStartsPointsMinusEndPoints){
+            BeginsEndsDiff = 1;
+            while(BeginsEndsDiff){
                 if((i != start.size())&&(start[i]<= finish[j])){
-                    sumOfStartsPointsMinusEndPoints++;
+                    BeginsEndsDiff++;
                     i++;
                 }
                 else{
-                    sumOfStartsPointsMinusEndPoints--;
+                    BeginsEndsDiff--;
                     j++;
                 }
             }
