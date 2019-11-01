@@ -297,7 +297,7 @@ public:
 
 https://leetcode.com/problems/validate-binary-search-tree/
 
-### With memory(20.7 MB)
+### With additional memory(20.7 MB)
 ```C++
 void Answer(TreeNode* root, vector<int>& answer){
     if(root != NULL){
@@ -321,7 +321,7 @@ public:
     }
 };
 ```
-### Without memory(20.4 MB)
+### Without additional memory(20.4 MB)
 
 ```C++
 bool Answer(TreeNode* root, long int down, long int up){
