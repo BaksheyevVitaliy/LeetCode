@@ -88,8 +88,7 @@ public:
         vector<vector<int>> graf;
         int i = 0, j = 0;
         if (numCourses == 0){
-            vector<int> nothing;
-            return nothing;
+            return {};
         }
         for(i = 0; i < numCourses; i++){
             graf.push_back(vector<int>{i});
@@ -106,8 +105,7 @@ public:
         }
         for(i = 0; i < numCourses; i++){
             if(Order(graf, color, ordering, i) == false){
-                vector<int> nothing;
-                return nothing;
+                return {};
             }
         }
         return ordering;
