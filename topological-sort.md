@@ -120,30 +120,27 @@ https://leetcode.com/problems/verifying-an-alien-dictionary/
 
 ```C++
 bool Compare(string word1, string word2, string order){
-    int passOrder = 0, pass1 = 0, pass2 = 0;
-    while((pass1 < word1.length())&&(pass2 < word2.length())){
-        if(word1[pass1] == word2[pass2]){
-            pass1++;
-            pass2++;
-        }
+    int passOrder = 0, pass = 0, minlength = min(word1.length(), word2.length());
+    while(pass < minlength){
+        if(word1[pass] == word2[pass])
+            pass++;
         else{
             for(passOrder = 0; passOrder < order.length(); passOrder++){
-                if(order[passOrder] == word1[pass1])
+                if(order[passOrder] == word1[pass])
                     return true;
-                if(order[passOrder] == word2[pass2])
+                if(order[passOrder] == word2[pass])
                     return false;
             }            
         }
     }
-    if((pass1 < word1.length())&&(pass2 == word2.length()))
+    if(minlength < word1.length())
         return false;
     return true;
 }
 class Solution {
 public:
     bool isAlienSorted(vector<string>& words, string order) {
-        int i;
-        for(i = 0; i < words.size()-1; i++)
+        for(int i = 0; i < words.size()-1; i++)
             if(!(Compare(words[i], words[i + 1], order)))
                 return false;
         return true;
