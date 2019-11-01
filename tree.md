@@ -275,19 +275,15 @@ https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
 class Solution {
 public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-        int minTreeLeave = min(p->val, q->val), maxTreeLeave = max(p->val, q->val), flag = 1;
+        int minTreeLeave = min(p->val, q->val), maxTreeLeave = max(p->val, q->val);
         while(true){
-            flag = 1;
-            if(root->val > maxTreeLeave){
+            if(root->val > maxTreeLeave)
                 root = root->left;
-                flag = 0;
-            }
-            if(root->val < minTreeLeave){
-                root = root->right;
-                flag = 0;
-            }
-            if(flag)
-                return root;
+            else
+                if(root->val < minTreeLeave)
+                    root = root->right;
+                else
+                    return root;
         }
     }
 };
