@@ -13,9 +13,8 @@ class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
         vector<int> answer;
-        int i, j;
-        for (i = 0; i < nums.size(); ++i){
-            for(j = nums.size() - 1; j > i; j--){
+        for (int i = 0; i < nums.size(); ++i){
+            for(int j = nums.size() - 1; j > i; j--){
                 if (nums[i] + nums[j] == target){
                     answer.push_back(i);
                     answer.push_back(j);
@@ -87,10 +86,10 @@ https://leetcode.com/problems/subarray-sum-equals-k/
 class Solution {
 public:
     int subarraySum(vector<int>& nums, int k) {
-        int sum = 0, i = 0, j = 0, quantity = 0;
-        for(i = 0; i < nums.size(); i++){
+        int sum = 0, quantity = 0;
+        for(int i = 0; i < nums.size(); i++){
             sum = 0;
-            for(j = i; j < nums.size(); j++){
+            for(int j = i; j < nums.size(); j++){
                 sum += nums[j];
                 if (k == sum)
                     quantity++;
