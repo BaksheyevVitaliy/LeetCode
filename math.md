@@ -26,15 +26,10 @@ public:
 class Solution {
 public:
     int fast(int N, int* arr){
-        if(N <= 1){
+        if(N <= 1)
           return N;
-        }
-        else{
-            if(arr[N] < 0){
-                arr[N] = fast(N - 1, arr) + fast(N - 2, arr);
-                return arr[N];
-            }
-        }
+        if(arr[N] < 0)
+          arr[N] = fast(N - 1, arr) + fast(N - 2, arr);
         return arr[N];
     }
     int fib(int N) {
