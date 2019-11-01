@@ -297,6 +297,7 @@ public:
 
 https://leetcode.com/problems/validate-binary-search-tree/
 
+# With memory(20.7 MB)
 ```C++
 void Answer(TreeNode* root, vector<int>& answer){
     if(root != NULL){
@@ -320,7 +321,27 @@ public:
     }
 };
 ```
+# Without memory(20.4 MB)
 
+```C++
+bool Answer(TreeNode* root, long int down, long int up){
+    bool bool1 = false, bool2 = false;
+    if(root != NULL){
+        bool1 = Answer(root->left, down, root->val);
+        bool2 = Answer(root->right, root->val, up);
+        if((down >= root->val)||(up <= root->val))
+            return false;
+        return bool1&&bool2;
+    }
+    return true;
+}
+class Solution {
+public:
+    bool isValidBST(TreeNode* root) {
+        return Answer(root, -INFINITY, INFINITY);
+    }
+};
+```
 ## Binary Search Tree Iterator
 
 https://leetcode.com/problems/binary-search-tree-iterator/
