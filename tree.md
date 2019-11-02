@@ -62,7 +62,9 @@ bool Answer(TreeNode* rLeft, TreeNode* rRight){
         return true;
     if ((rLeft == NULL)||(rRight == NULL))
         return false;
-    return (rRight->val == rLeft->val)&&(Answer(rLeft->left, rRight->right))&&(Answer(rLeft->right, rRight->left));
+    return (rRight->val == rLeft->val)
+         &&(Answer(rLeft->left, rRight->right))
+         &&(Answer(rLeft->right, rRight->left));
 }
 
 class Solution {
@@ -105,7 +107,9 @@ bool Answer(TreeNode* root1, TreeNode* root2){
         return true;
     if ((root1 == NULL)||(root2 == NULL))
         return false;
-    return (root2->val == root1->val)&&(Answer(root1->left, root2->left))&&(Answer(root1->right, root2->right));
+    return (root2->val == root1->val)
+         &&(Answer(root1->left, root2->left))
+         &&(Answer(root1->right, root2->right));
 
 }
 class Solution {
@@ -148,7 +152,8 @@ bool Answer(TreeNode* root, int sum){
     if(root == NULL)
         return false;
     if((root->left != NULL) ||(root->right != NULL))
-        return (Answer(root->left, sum - root->val))||(Answer(root->right, sum - root->val));
+        return (Answer(root->left, sum - root->val))
+             ||(Answer(root->right, sum - root->val));
     return sum == root->val;
 }
 class Solution {
@@ -195,7 +200,9 @@ bool Answer(TreeNode* root1, TreeNode* root2){
         return true;
     if ((root1 == NULL)||(root2 == NULL))
         return false;
-    return (root2->val == root1->val)&&(Answer(root1->left, root2->left))&&(Answer(root1->right, root2->right));
+    return (root2->val == root1->val)
+         &&(Answer(root1->left, root2->left))
+         &&(Answer(root1->right, root2->right));
 
 }
 bool SubAnswer(TreeNode* root1, TreeNode* root2){
@@ -276,7 +283,7 @@ class Solution {
 public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
         int minTreeLeave = min(p->val, q->val), maxTreeLeave = max(p->val, q->val);
-        while(true){
+        while(root){
             if(root->val > maxTreeLeave)
                 root = root->left;
             else
@@ -327,7 +334,7 @@ bool Answer(TreeNode* root, long int down, long int up){
         bool2 = Answer(root->right, root->val, up);
         if((down >= root->val)||(up <= root->val))
             return false;
-        return bool1&&bool2;
+        return bool1 && bool2;
     }
     return true;
 }
