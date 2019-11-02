@@ -82,17 +82,13 @@ public:
 https://leetcode.com/problems/maximum-depth-of-binary-tree/
 
 ```C++
-int Answer(TreeNode* root){
-    if(root != NULL){
-        return max(Answer(root->left), Answer(root->right)) + 1;
-    }
-    return 0;
-}
 class Solution {
 public:
     int maxDepth(TreeNode* root) {
-        return Answer(root);
-        
+      if(root != NULL){
+        return max(maxDepth(root->left), maxDepth(root->right)) + 1;
+      }
+      return 0;
     }
 };
 ```
@@ -148,19 +144,16 @@ public:
 https://leetcode.com/problems/path-sum/
 
 ```C++
-bool Answer(TreeNode* root, int sum){
-    if(root == NULL)
-        return false;
-    if((root->left != NULL) ||(root->right != NULL))
-        return (Answer(root->left, sum - root->val))
-             ||(Answer(root->right, sum - root->val));
-    return sum == root->val;
-}
 class Solution {
 public:
     bool hasPathSum(TreeNode* root, int sum) {
-       return Answer(root, sum);
-    }
+      if(root == NULL)
+        return false;
+      if((root->left != NULL) ||(root->right != NULL))
+        return (hasPathSum(root->left, sum - root->val))
+             ||(hasPathSum(root->right, sum - root->val));
+      return sum == root->val;
+}
 };
 ```
 
