@@ -121,21 +121,12 @@ public:
 https://leetcode.com/problems/invert-binary-tree/
 
 ```C++
-void Answer(TreeNode* root){
-    if(root != NULL){
-        Answer(root->left);
-        Answer(root->right);
-        TreeNode* buf = root->left;
-        root->left = root->right;
-        root->right = buf;
-    }
-}
 class Solution {
 public:
     TreeNode* invertTree(TreeNode* root) {
         if(root != NULL){
-            Answer(root->left);
-            Answer(root->right);
+            invertTree(root->left);
+            invertTree(root->right);
             TreeNode* buf = root->left;
             root->left = root->right;
             root->right = buf;
