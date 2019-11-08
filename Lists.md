@@ -405,6 +405,7 @@ public:
 
 https://leetcode.com/problems/sort-list/
 
+### Iteratively
 ```C++
 class Solution {
 public:
@@ -509,6 +510,62 @@ public:
         delete(ListFalse);
         return ListHead;    
         
+    }
+};
+```
+
+### Recursively
+```C++
+ListNode* Merge(ListNode* l1, ListNode* l2) {
+    if(l2 == NULL)
+        return l1;
+    if(l1 == NULL)
+        return l2;
+    ListNode* add = NULL;
+    ListNode* head = NULL;
+    if(l1->val > l2->val){
+        head = l2;
+        l2 = l2->next;
+    }
+    else{
+        head = l1;
+        l1 = l1->next;
+    }
+    add = head;
+    while((l1 != NULL) && (l2 != NULL)){
+        if(l1->val < l2->val){
+            add->next = l1;
+            l1 = l1->next;
+        }
+        else{
+            add->next = l2;
+            l2 = l2->next;
+        }
+        add = add->next;
+    }
+    if(l2 == NULL)
+        add->next = l1;
+    else
+        add->next = l2;
+    return head;
+    }
+ListNode* Middle(ListNode* head){
+    ListNode* slow = head;
+    ListNode* fast = head->next;
+    while((fast != NULL)&&(fast->next != NULL)){
+        slow = slow->next;
+        fast = fast->next->next;            
+    }
+    fast = slow->next;
+    slow->next = NULL;
+    return fast;
+}
+class Solution {
+public:
+    ListNode* sortList(ListNode* head) {
+        if((head == NULL)||(head->next == NULL))
+            return head;
+        return Merge(sortList(head), sortList(Middle(head)));
     }
 };
 ```
