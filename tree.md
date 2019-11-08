@@ -190,23 +190,18 @@ bool Answer(TreeNode* root1, TreeNode* root2){
         return true;
     if ((root1 == NULL)||(root2 == NULL))
         return false;
-    return (root2->val == root1->val)
-         &&(Answer(root1->left, root2->left))
-         &&(Answer(root1->right, root2->right));
+    return (root2->val == root1->val)&&(Answer(root1->left, root2->left))&&(Answer(root1->right, root2->right));
 
-}
-bool SubAnswer(TreeNode* root1, TreeNode* root2){
-    if(root1 != NULL){
-        if (Answer(root1, root2))
-            return true;
-        return SubAnswer(root1->left, root2)||SubAnswer(root1->right, root2);
-    }
-    return false;
 }
 class Solution {
 public:
     bool isSubtree(TreeNode* s, TreeNode* t) {
-        return SubAnswer(s, t);
+        if(s != NULL){
+        if (Answer(s, t))
+            return true;
+        return isSubtree(s->left, t)||isSubtree(s->right, t);
+    }
+    return false;
     }
 };
 ```
