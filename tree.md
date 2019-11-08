@@ -190,7 +190,9 @@ bool Answer(TreeNode* root1, TreeNode* root2){
         return true;
     if ((root1 == NULL)||(root2 == NULL))
         return false;
-    return (root2->val == root1->val)&&(Answer(root1->left, root2->left))&&(Answer(root1->right, root2->right));
+    return (root2->val == root1->val)
+         &&(Answer(root1->left, root2->left))
+         &&(Answer(root1->right, root2->right));
 
 }
 class Solution {
