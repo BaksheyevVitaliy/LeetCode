@@ -39,48 +39,23 @@ public:
 https://leetcode.com/problems/longest-repeating-character-replacement/
 ```C++
 class Solution {
-public:
-    int characterReplacement(string s, int k) {
-        if (s == "")
-            return 0;
-        int ans = 1;
-        int start = 0;
-        int end = 0;
-        vector<int> ar(26,0);
-        for(;end<s.length();end++) {
-            ar[s[end]-'A'] += 1;
-            int max = 0;
-            int sum = 0;
-            for(int j=0;j<26;j++) {
-                sum += ar[j];
-                if (max < ar[j])
-                    max = ar[j];
-            }
-            if (sum - max > k) {
-                int p = start;
-                for(;p<=end;p++) {
-                    ar[s[p]-'A'] -= 1;
-                    max = 0;
-                    sum = 0;
-                    for(int j=0;j<26;j++) {
-                        sum += ar[j];
-                        if (max < ar[j])
-                            max = ar[j];
-                    }
-                    if (sum- max <= k) {
-                        start = p+1;
-                        break;
-                    }
-                }
-            }
-            if (ans < end-start+1) {
-                ans = end-start+1;
-            }
-        }
-        
-        return ans;
-        
+ public:
+  int characterReplacement(string s, int k) {
+    int maxCount = 0;
+    int left = 0;
+    int count['Z' - 'A' + 1] = {0};
+    int answer = 0;
+    for (int right = 0; right < s.size(); right++) {
+      int windowSize = right - left + 1;
+      maxCount = max(maxCount, ++count[s[right] - 'A']);
+      if (windowSize - maxCount > k) {
+        count[s[left++] - 'A']--;
+      } else {
+        answer = max(answer, windowSize);
+      }
     }
+    return answer;
+  }
 };
 ```
 
