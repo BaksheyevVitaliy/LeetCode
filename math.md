@@ -59,9 +59,10 @@ public:
 };
 ```
 
+https://leetcode.com/problems/count-primes/
+
 ## Count Primes
 
-https://leetcode.com/problems/count-primes/
 ```C++
 class Solution {
 public:
