@@ -3,6 +3,7 @@
 + [Fibonacci Number Slow Recursion](#fibonacci-number-slow-recursion)
 + [Fibonacci Number Fast Recursion](#fibonacci-number-fast-recursion)
 + [Fibonacci Number Iteration](#fibonacci-number-iteration)
++ [Count Primes](#count-primes)
 
 https://leetcode.com/problems/fibonacci-number/
 
@@ -54,6 +55,31 @@ public:
             first = last - first;
         }            
         return first;
+    }
+};
+```
+
+## Count Primes
+
+https://leetcode.com/problems/count-primes/
+```C++
+class Solution {
+public:
+    int countPrimes(int n) {
+        vector<int> Erastoph(n, 0);
+        int ans = 0;
+        for(int i = 2; i < n; i++){
+            if(Erastoph[i] == 0){
+                ans++;
+                int j = 2;
+                while(i * j < n){
+                    Erastoph[i*j] = 1;
+                    j++;
+                }
+            }
+        }
+        return ans;
+        
     }
 };
 ```
